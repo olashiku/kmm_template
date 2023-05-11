@@ -3,6 +3,7 @@ package com.olashiku.kmmtemplate.network
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
+import io.ktor.client.plugins.websocket.*
 import io.ktor.client.request.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
@@ -31,6 +32,13 @@ class NetworkConfiguration {
             requestTimeoutMillis = 105000L
             connectTimeoutMillis = 105000L
             socketTimeoutMillis = 105000L
+        }
+    }
+
+    val socketClient = httpClient {
+        install(WebSockets)
+        install(Logging) {
+            level = LogLevel.ALL
         }
     }
 }
