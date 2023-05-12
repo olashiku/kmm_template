@@ -29,9 +29,10 @@ class NetworkConfiguration {
         }
 
         install(HttpTimeout) {
-            requestTimeoutMillis = 105000L
-            connectTimeoutMillis = 105000L
-            socketTimeoutMillis = 105000L
+            requestTimeoutMillis = 300000L
+            connectTimeoutMillis = 300000L
+            socketTimeoutMillis = 300000L
+
         }
     }
 

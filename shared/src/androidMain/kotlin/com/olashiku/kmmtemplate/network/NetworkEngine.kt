@@ -9,7 +9,7 @@ actual fun httpClient(config: HttpClientConfig<*>.() -> Unit) = HttpClient(OkHtt
     engine {
         config {
             retryOnConnectionFailure(true)
-            connectTimeout(1000, TimeUnit.SECONDS)
+            connectTimeout(5, TimeUnit.MINUTES)
         }
     }
 

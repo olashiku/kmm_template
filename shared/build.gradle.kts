@@ -24,6 +24,7 @@ kotlin {
         val coroutinesVersion = "1.5.0-native-mt"
         val serializationVersion = "1.2.2"
         val kotlinSerializationVersion = "1.3.0"
+        val koinVersion = "3.2.0"
 
 
 
@@ -42,6 +43,7 @@ kotlin {
                 implementation ("io.ktor:ktor-client-json:$ktorVersion")
                 implementation("io.ktor:ktor-client-serialization:$ktorVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinSerializationVersion")
+                implementation("io.insert-koin:koin-core:$koinVersion")
             }
             }
 
