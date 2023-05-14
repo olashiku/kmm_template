@@ -12,7 +12,7 @@ open class BaseNetworkRepository: KoinComponent {
 
      val networkProvider : NetworkConfiguration by inject()
 
-    suspend inline fun <reified R:Any, reified T:Any> makeNetworkCallWithData(request:R, endpoint:String, checkIfSuccessful:(T)->Boolean,data:(R,T)->Unit): NetworkResult<T>{
+    suspend inline fun <reified R:Any, reified T:Any> makeNetworkCallAndRetrieveData(request:R, endpoint:String, checkIfSuccessful:(T)->Boolean, data:(R, T)->Unit): NetworkResult<T>{
      return  try {
            val response: HttpResponse = networkProvider.client.post {
                url {

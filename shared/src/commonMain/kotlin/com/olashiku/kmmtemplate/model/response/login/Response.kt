@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Response(
-    val code: String,
-    val message: String
+    val code: String = "",
+    val message: String = ""
+
 )

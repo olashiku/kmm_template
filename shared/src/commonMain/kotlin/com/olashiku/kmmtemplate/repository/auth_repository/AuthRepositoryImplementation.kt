@@ -8,7 +8,7 @@ import com.olashiku.kmmtemplate.network.NetworkResult
 
 class AuthRepositoryImplementation:BaseNetworkRepository(),AuthenticationRepository {
     override suspend fun login(loginRequest: LoginRequest): NetworkResult<LoginResponse> {
-      return  makeNetworkCallWithData(loginRequest,EndPoints.LOGIN,{it.responsecode.equals("00")},::getLogin )
+      return  makeNetworkCallAndRetrieveData(loginRequest,EndPoints.LOGIN,{it.responsecode.equals("00")},::getLogin )
     }
 
      fun getLogin(request: LoginRequest,response: LoginResponse){

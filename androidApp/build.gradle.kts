@@ -55,6 +55,11 @@ dependencies {
     implementation ("org.slf4j:slf4j-api:2.0.0-alpha7")
     implementation ("org.slf4j:slf4j-jdk14:2.0.0-alpha7")
     implementation ("org.slf4j:slf4j-simple:2.0.0-alpha7")
-    implementation("io.insert-koin:koin-core:3.2.0")
+
+    implementation ("io.insert-koin:koin-android:3.3.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.0")
+    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
+
+
 
 }

@@ -32,7 +32,6 @@ class NetworkConfiguration {
             requestTimeoutMillis = 300000L
             connectTimeoutMillis = 300000L
             socketTimeoutMillis = 300000L
-
         }
     }
 

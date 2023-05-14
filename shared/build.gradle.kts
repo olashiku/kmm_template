@@ -26,8 +26,6 @@ kotlin {
         val kotlinSerializationVersion = "1.3.0"
         val koinVersion = "3.2.0"
 
-
-
         val commonMain by getting{
             dependencies{
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
