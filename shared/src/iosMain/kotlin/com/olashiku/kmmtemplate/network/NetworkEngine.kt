@@ -9,7 +9,6 @@ actual fun httpClient(config: HttpClientConfig<*>.()-> Unit)= HttpClient(Darwin)
     engine{
         configureRequest{
             setAllowsCellularAccess(true)
-
         }
     }
 
