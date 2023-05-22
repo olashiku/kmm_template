@@ -7,6 +7,7 @@ import com.olashiku.kmmtemplate.network.EndPoints
 import com.olashiku.kmmtemplate.network.NetworkResult
 
 class AuthRepositoryImplementation:BaseNetworkRepository(),AuthenticationRepository {
+
     override suspend fun login(loginRequest: LoginRequest): NetworkResult<LoginResponse> {
       return  makeNetworkCallAndRetrieveData(loginRequest,EndPoints.LOGIN,{it.responsecode.equals("00")},::getLogin )
     }

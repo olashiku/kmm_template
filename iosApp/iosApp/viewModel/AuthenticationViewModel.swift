@@ -18,41 +18,72 @@ import shared
         self.authenticationRepository = authenticationRepository
     }
     
-    
-    func loginUser() -> String{
+    func makecall(){
+        var loginRequest = LoginRequest(devicename: "String", deviceplatform: "String", deviceversion: "String", mobiledeviceid: "String", mobilepushuserid: "String", password: "String", source: "String", username: "String")
         
-        let request = LoginRequest(devicename: "Android SDK built for x86", deviceplatform: "Android", deviceversion: "1.0", mobiledeviceid: "8755326412e91de0", mobilepushuserid: "69474fb5-dd3e-48e7-82a3-1a570a9bb3ac", password: "12345678", source: "Android", username: "2347066353204")
         
-     
-            self.authenticationRepository?.login(loginRequest: request) { result, error in
-                
-                if let result = result{
-                DispatchQueue.main.async{
-                   
-                }
-                }
-                
-                else if let error = error{
-                DispatchQueue.main.async{
-                   
+        makeLoginCall(request: loginRequest) { request, completion in
+            self.authenticationRepository?.login(loginRequest: request as LoginRequest) {
+            response: LoginResponse?, error: Error? in
+                completion(response, error)
+            }
+        }
+        
+    }
 
-                }
-                }
-                
-//                print("result \(result! as NetworkResult<LoginResponse>)")
-//                print("error \(error)")
-//
-//                if let loginResponse = result as? NetworkResult<LoginResponse> {
-//                    // Access the value of result here
-//                    print("here is my value")
-//                    print(loginResponse)
-//
-//                } else if let error = error {
-//                    // Handle the error here
-//                }
+ 
+    
+    
+    
+
+    
+    func makeLoginCall(request:LoginRequest){
+        
+        self.authenticationRepository?.login(loginRequest: request) { result, error in
+            switch result {
+            case let success as NetworkResultSuccess<LoginResponse>:
+                let loginResponse : LoginResponse = success.data
+                print("myloginResponse \(loginResponse) ")
+                break
+            case let failed as NetworkResultFailed<LoginResponse>:
+                let error : LoginResponse = failed.message
+                print("myloginResponse \(error.responsemessage) ")
+                break
+            case let error as  NetworkResultErrror:
+                let exceptionMessage = error.exception.message
+            break
+            default:
+                print("no x value")
             }
             
-        
-        return "hello world"
+            if((error) != nil){
+                
+            }
+        }
+    }
+    
+    func makeLoginCall<R, T>(request: R, response: T, operation: @escaping (R, @escaping (T?, Error?) -> Void) -> Void) {
+    
+        operation(request) { response, error in
+            switch response {
+            case let success as NetworkResultSuccess<T >:
+                let loginResponse: T = success.data
+                print("myloginResponse \(loginResponse)")
+                break
+            case let failed as NetworkResultFailed<T>:
+                let error: T = failed.message
+                print("myloginResponse \(error.responsemessage)")
+                break
+            case let error as NetworkResultError:
+                let exceptionMessage = error.exception.message
+                break
+            default:
+                print("no x value")
+            }
+            
+            if error != nil {
+                // Handle error
+            }
+        }
     }
 }

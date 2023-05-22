@@ -42,7 +42,6 @@ class MainActivity : ComponentActivity() {
 fun App(authenticationViewModel: AuthenticationViewModel) {
     val state by authenticationViewModel.state.collectAsState()
     if(state.loginResponse.isNotEmpty()){
-
         val loginResponse = state.loginResponse.fromJson<LoginResponse>()
         GreetingView(loginResponse.responsemessage)
     }
