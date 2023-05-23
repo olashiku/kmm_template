@@ -2,9 +2,11 @@ package com.olashiku.kmmtemplate.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.olashiku.kmmtemplate.model.response.login.LoginResponse
 import com.olashiku.kmmtemplate.network.NetworkResult
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
@@ -18,7 +20,7 @@ open class BaseViewModel : ViewModel() {
         apiCall: suspend (request: R) -> NetworkResult<T>,
         getError: (response: T) -> Unit, response:(T)->Unit, getException:(String)->Unit
     ) {
-        runBlocking {
+        viewModelScope.launch {
             val result = withContext(Dispatchers.IO) {
                 isLoading.postValue(true)
                 apiCall(request)

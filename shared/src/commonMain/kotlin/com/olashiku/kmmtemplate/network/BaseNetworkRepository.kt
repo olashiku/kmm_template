@@ -35,7 +35,7 @@ open class BaseNetworkRepository: KoinComponent {
        }
      }
 
-    suspend inline fun <reified R:Any, reified T:Any> makeNetworkCall(request:R, endpoint:String, checkIfSuccessful:(T)->Boolean): NetworkResult<T>{
+    suspend inline fun <reified R:Any, reified T:Any> makeNetworkCallAndRetrieveData(request:R, endpoint:String, checkIfSuccessful:(T)->Boolean): NetworkResult<T>{
         return  try {
             val response: HttpResponse = networkProvider.client.post {
                 url {

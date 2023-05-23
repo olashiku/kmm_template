@@ -46,6 +46,11 @@ fun App(authenticationViewModel: AuthenticationViewModel) {
         GreetingView(loginResponse.responsemessage)
     }
 
+     if(state.errorMessage.isNotEmpty()){
+         val message = state.errorMessage
+         GreetingView(message)
+     }
+
 }
 
 @Composable

@@ -20,7 +20,7 @@ struct LoginScreen: View {
     }
     
     var body: some View {
-        Text(viewModel.loginUser())
+        Text(viewModel.makeLoginCallLegit())
     }
 }
 
