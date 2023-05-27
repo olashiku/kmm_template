@@ -1,0 +1,43 @@
+CREATE TABLE Account(
+id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+accountAllowNegativeBalance TEXT NOT NULL,
+accountBalance TEXT NOT NULL,
+accountBankCode TEXT NOT NULL,
+accountBranchCode TEXT NOT NULL,
+accountChecker TEXT NOT NULL,
+accountClass TEXT NOT NULL,
+accountCreatedDate TEXT NOT NULL,
+accountCurrency TEXT NOT NULL,
+accountCustomerId TEXT NOT NULL,
+accountDateOpened TEXT NOT NULL,
+accountGlCategory TEXT NOT NULL,
+accountGlLevel1Code TEXT NOT NULL,
+accountGlLevel2Code TEXT NOT NULL,
+accountId TEXT NOT NULL,
+accountInterestRate TEXT NOT NULL,
+accountLedgerBalance TEXT NOT NULL,
+accountMaker TEXT NOT NULL,
+accountName TEXT NOT NULL,
+accountNumber TEXT NOT NULL,
+accountStatus TEXT NOT NULL,
+accountType TEXT NOT NULL,
+accountUpdatedDate TEXT NOT NULL
+);
+
+getAllAccounts:
+SELECT  * FROM Account;
+
+insertAccount:
+INSERT  INTO Account(
+accountAllowNegativeBalance,accountBalance ,accountBankCode,
+accountBranchCode,accountChecker,accountClass,accountCreatedDate,
+accountCurrency,accountCustomerId,accountDateOpened,
+accountGlCategory,accountGlLevel1Code,accountGlLevel2Code,
+accountId,accountInterestRate,accountLedgerBalance,accountMaker,accountName,
+accountNumber,accountStatus,accountType,accountUpdatedDate) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,
+?,?,?,?,?,?,?,?,?);
+
+deleteAccounts:
+DELETE FROM Account;
+
+

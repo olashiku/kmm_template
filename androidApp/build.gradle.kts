@@ -4,8 +4,17 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     kotlin("plugin.serialization") version "1.8.10"
-
+    id("app.cash.sqldelight") version "2.0.0-alpha05"
 }
+
+sqldelight{
+    databases{
+        create("Database"){
+            packageName.set("com.olashiku")
+        }
+    }
+}
+
 
 android {
     namespace = "com.olashiku.kmmtemplate.android"
