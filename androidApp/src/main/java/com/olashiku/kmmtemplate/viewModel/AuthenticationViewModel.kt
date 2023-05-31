@@ -15,8 +15,7 @@ class AuthenticationViewModel(
     private val saveStateHandle: SavedStateHandle
 ) : BaseViewModel() {
     private val loading = saveStateHandle.getStateFlow("isLoading", false)
-    private val loginResponse =
-        saveStateHandle.getStateFlow("loginResponse", LoginResponse().toJson())
+    private val loginResponse = saveStateHandle.getStateFlow("loginResponse", LoginResponse().toJson())
     private val errorMessage = saveStateHandle.getStateFlow("errorMessage", "")
 
     val state =
