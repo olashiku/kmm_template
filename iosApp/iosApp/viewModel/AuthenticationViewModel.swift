@@ -8,6 +8,9 @@
 
 import Foundation
 import shared
+import os.log
+
+
 
 @MainActor class AuthenticationViewModel:ObservableObject {
     
@@ -49,7 +52,7 @@ import shared
                 break
             case let failed as NetworkResultFailed<LoginResponse>:
                 let error : LoginResponse = failed.message
-                print("myloginResponse \(error.responsemessage) ")
+                MyLogger().custom("myloginResponse \(String(describing: error.response?.message)) ")
                 break
             case let error as  NetworkResultErrror:
                 let exceptionMessage = error.exception.message

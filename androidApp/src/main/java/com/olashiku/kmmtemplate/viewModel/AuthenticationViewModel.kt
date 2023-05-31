@@ -14,15 +14,19 @@ class AuthenticationViewModel(
     private val authenticationRepository: AuthenticationRepository,
     private val saveStateHandle: SavedStateHandle
 ) : BaseViewModel() {
-    private val loginResponse = saveStateHandle.getStateFlow("loginResponse", LoginResponse().toJson())
+    private val loading = saveStateHandle.getStateFlow("isLoading", false)
+    private val loginResponse =
+        saveStateHandle.getStateFlow("loginResponse", LoginResponse().toJson())
     private val errorMessage = saveStateHandle.getStateFlow("errorMessage", "")
 
-    val state = combine(loginResponse, errorMessage) { loginResponse, errorMessage ->
-        LoginState(
-            loginResponse = loginResponse,
-            errorMessage = errorMessage
-        )
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), LoginState())
+    val state =
+        combine(loginResponse, errorMessage, loading) { loginResponse, errorMessage, loading ->
+            LoginState(
+                loginResponse = loginResponse,
+                errorMessage = errorMessage,
+                loadingState = loading
+            )
+        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), LoginState())
 
     fun loginUser() {
         val request = LoginRequest(
@@ -36,13 +40,15 @@ class AuthenticationViewModel(
             "2347066353204"
         )
         makePostRequest(request, authenticationRepository::login, {
-            saveStateHandle["errorMessage"] = it.responsemessage
+            saveStateHandle["errorMessage"] = it.response?.message
         },
             { response ->
                 saveStateHandle["loginResponse"] = response.toJson()
+            }, { exception ->
+                saveStateHandle["errorMessage"] = exception
             }
-        ) { exception ->
-            saveStateHandle["errorMessage"] = exception
+        ) { isLoading ->
+            saveStateHandle["isLoading"] = isLoading
         }
     }
 }

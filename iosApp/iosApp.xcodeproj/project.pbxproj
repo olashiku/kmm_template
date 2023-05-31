@@ -13,6 +13,7 @@
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		A00577D52A128E9400219E76 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00577D42A128E9400219E76 /* BaseViewModel.swift */; };
 		A0465B302A138856003AD186 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0465B2F2A138856003AD186 /* LoginScreen.swift */; };
+		A07E0A172A239EA80034A1F9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07E0A162A239EA80034A1F9 /* Logger.swift */; };
 		A08162A82A125C1E001E5C64 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08162A72A125C1E001E5C64 /* AuthenticationViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A00577D42A128E9400219E76 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		A0465B2F2A138856003AD186 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
+		A07E0A162A239EA80034A1F9 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		A08162A72A125C1E001E5C64 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,6 +82,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				A07E0A152A239E9A0034A1F9 /* utils */,
 				A0465B2D2A138584003AD186 /* login */,
 				A08162A62A125BE6001E5C64 /* viewModel */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
@@ -104,6 +107,14 @@
 				A0465B2F2A138856003AD186 /* LoginScreen.swift */,
 			);
 			path = login;
+			sourceTree = "<group>";
+		};
+		A07E0A152A239E9A0034A1F9 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				A07E0A162A239EA80034A1F9 /* Logger.swift */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 		A08162A62A125BE6001E5C64 /* viewModel */ = {
@@ -208,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A08162A82A125C1E001E5C64 /* AuthenticationViewModel.swift in Sources */,
+				A07E0A172A239EA80034A1F9 /* Logger.swift in Sources */,
 				A00577D52A128E9400219E76 /* BaseViewModel.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,

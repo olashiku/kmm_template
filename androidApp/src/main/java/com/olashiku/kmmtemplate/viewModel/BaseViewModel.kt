@@ -3,7 +3,6 @@ package com.olashiku.kmmtemplate.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.olashiku.kmmtemplate.model.response.login.LoginResponse
 import com.olashiku.kmmtemplate.network.NetworkResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -13,19 +12,19 @@ import kotlinx.coroutines.withContext
 
 open class BaseViewModel : ViewModel() {
 
-     var isLoading  = MutableLiveData<Boolean>()
 
     fun <R : Any, T : Any> makePostRequest(
         request: R,
         apiCall: suspend (request: R) -> NetworkResult<T>,
-        getError: (response: T) -> Unit, response:(T)->Unit, getException:(String)->Unit
+        getError: (response: T) -> Unit, response:(T)->Unit, getException:(String)->Unit,
+        isLoading: (Boolean) -> Unit
     ) {
         viewModelScope.launch {
             val result = withContext(Dispatchers.IO) {
-                isLoading.postValue(true)
+                isLoading(true)
                 apiCall(request)
             }
-            isLoading.postValue(false)
+            isLoading(false)
             when (result) {
                 is NetworkResult.Success<*> -> {
                     response(result.data as T)
@@ -46,14 +45,16 @@ open class BaseViewModel : ViewModel() {
         apiCall: suspend () -> NetworkResult<T>,
         getError: (response: T) -> Unit,
         response:(T)->Unit,
-        getException:(String)->Unit
+        getException:(String)->Unit,
+        isLoading: (Boolean) -> Unit
+
     ) {
         runBlocking {
             val result = withContext(Dispatchers.IO) {
-                isLoading.postValue(true)
+                isLoading(true)
                 apiCall()
             }
-            isLoading.postValue(false)
+            isLoading(false)
             when (result) {
                 is NetworkResult.Success<*> -> {
                     response(result.data as T)

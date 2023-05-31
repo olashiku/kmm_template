@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.sourceInformation
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.olashiku.kmmtemplate.model.response.login.LoginResponse
@@ -46,10 +47,9 @@ fun App(authenticationViewModel: AuthenticationViewModel) {
         GreetingView(loginResponse.responsemessage)
     }
 
-     if(state.errorMessage.isNotEmpty()){
-         val message = state.errorMessage
-         GreetingView(message)
-     }
+         val message = state.loadingState
+         GreetingView(message.toString())
+
 
 }
 
