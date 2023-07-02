@@ -46,10 +46,8 @@ fun App(authenticationViewModel: AuthenticationViewModel) {
         val loginResponse = state.loginResponse.fromJson<LoginResponse>()
         GreetingView(loginResponse.responsemessage)
     }
-
          val message = state.loadingState
          GreetingView(message.toString())
-
 
 }
 
